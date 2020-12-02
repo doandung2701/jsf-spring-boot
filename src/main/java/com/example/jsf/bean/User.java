@@ -4,11 +4,11 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 public class User {
-	@NotNull(message = "{email.notempty}")
+	@NotNull(message = "{NotNull.user.name}")
 	private String name;
 	@Min(18)
 	private int age;
-	@NotNull(message = "{email.notempty}")
+	@NotNull(message = "{NotNull.user.name}")
 	private String mobile;
 
 	public String getName() {

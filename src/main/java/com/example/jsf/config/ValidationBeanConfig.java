@@ -24,39 +24,38 @@ public class ValidationBeanConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public MessageSource messageSource() {
 		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-
 		messageSource.setBasename("classpath:messages");
 		messageSource.setDefaultEncoding("UTF-8");
 		return messageSource;
 	}
 
-	@Bean
-	@Primary
-	public MessageSourceResourceBundleLocator messageSourceResourceBundleLocator() {
-		return new MessageSourceResourceBundleLocator(messageSource());
-	}
+//	@Bean
+//	@Primary
+//	public MessageSourceResourceBundleLocator messageSourceResourceBundleLocator() {
+//		return new MessageSourceResourceBundleLocator(messageSource());
+//	}
 
-	@Bean
-	@Primary
-	public MessageInterpolator messageInterpolator() {
-		return new ResourceBundleMessageInterpolator(messageSourceResourceBundleLocator(), true);
-	}
+//	@Bean
+//	@Primary
+//	public MessageInterpolator messageInterpolator() {
+//		return new ResourceBundleMessageInterpolator(messageSourceResourceBundleLocator(), true);
+//	}
 
 	@Bean
 	@Primary
 	public LocalValidatorFactoryBean getMessageValidator() {
 		LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
-		bean.setMessageInterpolator(messageInterpolator());
+		bean.setValidationMessageSource(messageSource());
 		return bean;
 	}
 
-	@Bean
-	@Primary
-	public MethodValidationPostProcessor methodValidationPostProcessor() {
-		MethodValidationPostProcessor methodValidationPostProcessor = new MethodValidationPostProcessor();
-		methodValidationPostProcessor.setValidator(getMessageValidator());
-		return methodValidationPostProcessor;
-	}
+//	@Bean
+//	@Primary
+//	public MethodValidationPostProcessor methodValidationPostProcessor() {
+//		MethodValidationPostProcessor methodValidationPostProcessor = new MethodValidationPostProcessor();
+//		methodValidationPostProcessor.setValidator(getMessageValidator());
+//		return methodValidationPostProcessor;
+//	}
 
 	@Override
 	public org.springframework.validation.Validator getValidator() {
